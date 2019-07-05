@@ -53,10 +53,11 @@ router.put('/update/:id', (req, res, next) => {
 
 });
 router.deleted('/:id', (req, res, next => {
+    let id = req.params.id;
 
     Post.findById(id)
         .then(post => {
-            post.destroy()
+            post.delete()
                 .then(post => {
                     res.send({
                         message: 'Post deleted successfully',
