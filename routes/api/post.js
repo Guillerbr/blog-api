@@ -42,7 +42,7 @@ router.put('/update/:id', (req, res, next) => {
             post.save()
                 .then(post => {
                     res.send({
-                        message: 'Post udated successfuly',
+                        message: 'Post updated successfully',
                         status: 'success',
                         post: post
                     })
@@ -52,6 +52,23 @@ router.put('/update/:id', (req, res, next) => {
         .catch(err => console.log(err))
 
 });
+router.deleted('/:id', (req, res, next => {
+
+    Post.findById(id)
+        .then(post => {
+            post.destroy()
+                .then(post => {
+                    res.send({
+                        message: 'Post deleted successfully',
+                        status: 'success',
+                        post: post
+                    })
+                })
+                .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+
+})
 
 module.exports = router;
 
