@@ -33,7 +33,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //initialize public directory
-app.get('*', (req ,res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
@@ -41,6 +41,11 @@ app.get('/', (req, res) => {
     res.send('<h1>Hello World</h1>')
 
 });
+
+const postRoutes = require('./routes/apis/post');
+
+app.use('/api/posts', postRoutes);
+
 app.listen(port, () => {
     console.log('Server started on port', port)
 });
