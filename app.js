@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 
 const app = express();
@@ -30,6 +31,11 @@ app.use(cors());
 
 // initialize BodyParser Middleware
 app.use(bodyParser.json());
+
+//initialize public directory
+app.get('*', (req ,res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
 app.get('/', (req, res) => {
     res.send('<h1>Hello World</h1>')
