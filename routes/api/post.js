@@ -52,7 +52,7 @@ router.put('/update/:id', (req, res, next) => {
         .catch(err => console.log(err))
 
 });
-router.deleted('/:id', (req, res, next => {
+router.deleted('/:id', (req, res, next) => {
     let id = req.params.id;
 
     Post.findById(id)
@@ -69,7 +69,7 @@ router.deleted('/:id', (req, res, next => {
         })
         .catch(err => console.log(err))
 
-})
+});
 
 module.exports = router;
 
