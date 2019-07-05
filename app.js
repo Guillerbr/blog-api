@@ -11,25 +11,30 @@ const db = require('./config/db').database;
 // database connection
 
 mongoose.connect(db,
-     {useNewUrlParser: true})
-  .then(() => {
+    { useNewUrlParser: true })
+    .then(() => {
 
-    console.log('Database Connected Sucess')
+        console.log('Database Connected Sucess')
 
-  })
-  .catch((err) => {
-      console.log('Unable to connect with the database', err)
-  });
+    })
+    .catch((err) => {
+        console.log('Unable to connect with the database', err)
+    });
 
 
-  //Define the PORT
-  const port = process.env.PORT || 5000;
+//Define the PORT
+const port = process.env.PORT || 5000;
 
-  // initialize cors middleware
+// initialize cors middleware
+app.use(cors());
 
-  app.use(cors());
+// initialize BodyParser Middleware
+app.use(bodyParser.json());
 
-  // initialize BodyParser Middleware
-  app.use(bodyParser.json());
+app.get('/', (req, res) => {
+    res.send('<h1>Hello World</h1>')
 
-  app.get('/', (req,res))
+});
+app.listen(port, () => {
+    console.log('Server started on port', port)
+});
